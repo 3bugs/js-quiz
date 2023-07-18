@@ -238,4 +238,4 @@ const space = ' ';
 var result = arrayResult.reduce((acc, item) => `${acc}${item}${space}`, "");
 ```
 
-Created with ❤️by [Promlert Lovichit](promlert@gmail.com)
+Created with ❤️ by [Promlert Lovichit](mailto:promlert@gmail.com)
