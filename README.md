@@ -123,9 +123,9 @@ Good Evening
 
 #### เหตุผล:
 
-ฟังก์ชั่น `Greet()` ในที่นี้คือ constructor function ซึ่ง `new Greet()` จะเป็นการสร้าง `Greet` instance/object
+ฟังก์ชั่น `Greet()` ในที่นี้คือ constructor function และ `Greet` จะเทียบได้กับคลาส (class) ในภาษาแบบ OOP ซึ่ง `new Greet()` จะเป็นการสร้าง `Greet` instance/object
 ขึ้นมาใหม่ โดยค่าที่เราส่งให้กับ `new Greet()`
-จะถูกเก็บลงในพร็อพเพอร์ตี้ `mode` ในออบเจ็ค (instance) นั้นๆ (`this.mode`)
+จะถูกเก็บลงในพร็อพเพอร์ตี้ `mode` ใน `Greet` object/instance นั้นๆ (`this.mode`)
 
 ดังนั้น เมื่อเรียกใช้ฟังก์ชั่น `callgreet()` บนแต่ละออบเจ็ค จึงเป็นการพิมพ์คำว่า **Good**
 แล้วตามด้วยค่าของพร็อพเพอร์ตี้ `mode` ของออบเจ็คนั้นๆ ออกมาที่ console
@@ -161,7 +161,7 @@ Angry Birds
 ตัวแปร `games` ในที่นี้คือ constructor function (ถูก define ในรูปแบบ *นิพจน์ฟังก์ชั่น*) ซึ่งภายใน constructor
 มีการกำหนดพร็อพเพอร์ตี้ `name` ของ instance ให้มีค่าเริ่มต้นเป็นสตริงว่าง
 
-จากนั้นมีการ define ฟังก์ชั่น (เมธอด) `getName()` และ `setName()` เพิ่มให้กับ `games`
+จากนั้นมีการ define ฟังก์ชั่น (เมธอด) `getName()` และ `setName()` เพิ่มให้กับคลาส `games`
 
 เมธอด `getName()` จะกำหนดพร็อพเพอร์ตี้ `name` ของ instance เป็นค่า `'Age of Empire'` แล้ว return instance นั้นๆ
 กลับออกไป
