@@ -121,7 +121,50 @@ Good Evening
 
 #### เหตุผล:
 
-`new Greet()` จะสร้าง instance ของ `Greet` (`Greet` object) ขึ้นมาใหม่ โดยค่าที่เราส่งให้กับ `new Greet()` จะถูกเก็บลงในพร็อพเพอร์ตี้ `mode` ในออบเจ็ค (instance) นั้นๆ (`this.mode`) 
+ฟังก์ชั่น `Greet()` ในที่นี้คือ constructor function ซึ่ง `new Greet()` จะเป็นการสร้าง `Greet` instance/object ขึ้นมาใหม่ โดยค่าที่เราส่งให้กับ `new Greet()`
+จะถูกเก็บลงในพร็อพเพอร์ตี้ `mode` ในออบเจ็ค (instance) นั้นๆ (`this.mode`)
 
-ดังนั้น เมื่อเรียกใช้ฟังก์ชั่น `callgreet()` บนแต่ละออบเจ็ค จึงเป็นการพิมพ์คำว่า Good แล้วตามด้วยค่าของพร็อพเพอร์ตี้ `mode` ของออบเจ็คนั้นๆออกมาที่ console
+ดังนั้น เมื่อเรียกใช้ฟังก์ชั่น `callgreet()` บนแต่ละออบเจ็ค จึงเป็นการพิมพ์คำว่า Good
+แล้วตามด้วยค่าของพร็อพเพอร์ตี้ `mode` ของออบเจ็คนั้นๆ ออกมาที่ console
 
+### 5. What will the following code output to the console?
+
+```javascript
+var games = function () {
+  this.name = '';
+}
+games.prototype.getName = function () {
+  this.name = 'Age of Empire';
+  return this;
+}
+games.prototype.setName = function (n) {
+  this.name = n;
+}
+var g = new games();
+g.getName().setName('Angry Birds');
+console.log(g.name);
+```
+
+#### ตอบ:
+
+ผลลัพธ์ที่ console คือ
+
+```
+Angry Birds
+```
+
+#### เหตุผล:
+
+ตัวแปร `games` ในที่นี้คือ constructor function (ถูก define ในรูปแบบนิพจน์ฟังก์ชั่น) ซึ่งภายใน constructor มีการกำหนดพร็อพเพอร์ตี้ `name` ให้มีค่าเริ่มต้นเป็นสตริงว่าง 
+
+จากนั้นมีการ define ฟังก์ชั่น (เมธอด) `getName()` และ `setName()` เพิ่มเข้าไป
+
+เมธอด `getName()` จะกำหนดพร็อพเพอร์ตี้ `name` เป็นค่า `'Age of Empire'` แล้ว return object instance นั้นๆ กลับออกไป
+
+เมธอด `setName()` จะนำค่าของตัวแปร `n` ที่เราส่งผ่านเข้าไป ไปกำหนดให้พร็อพเพอร์ตี้ `name`
+
+`var g = new games();` คือการสร้าง `games` object เก็บไว้ที่ตัวแปร `g`
+
+`g.getName().setName('Angry Birds');` คือการเรียกใช้ `getName()` เพื่อกำหนดพร็อพเพอร์ตี้ `name` ในออบเจ็ค `g` เป็นค่า `'Age of Empire'` แล้วเรียกใช้ `setName()` เพื่อเปลี่ยนพร็อพเพอร์ตี้ `name` เป็น `'Angry Birds'` ตามค่าที่ส่งให้กับ `setName()`
+
+ดังนั้นเมื่อ log ค่า `g.name` จึงแสดงคำว่า Angry Birds ออกมาที่ console
