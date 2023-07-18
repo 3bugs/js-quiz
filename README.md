@@ -121,10 +121,11 @@ Good Evening
 
 #### เหตุผล:
 
-ฟังก์ชั่น `Greet()` ในที่นี้คือ constructor function ซึ่ง `new Greet()` จะเป็นการสร้าง `Greet` instance/object ขึ้นมาใหม่ โดยค่าที่เราส่งให้กับ `new Greet()`
+ฟังก์ชั่น `Greet()` ในที่นี้คือ constructor function ซึ่ง `new Greet()` จะเป็นการสร้าง `Greet` instance/object
+ขึ้นมาใหม่ โดยค่าที่เราส่งให้กับ `new Greet()`
 จะถูกเก็บลงในพร็อพเพอร์ตี้ `mode` ในออบเจ็ค (instance) นั้นๆ (`this.mode`)
 
-ดังนั้น เมื่อเรียกใช้ฟังก์ชั่น `callgreet()` บนแต่ละออบเจ็ค จึงเป็นการพิมพ์คำว่า Good
+ดังนั้น เมื่อเรียกใช้ฟังก์ชั่น `callgreet()` บนแต่ละออบเจ็ค จึงเป็นการพิมพ์คำว่า **Good**
 แล้วตามด้วยค่าของพร็อพเพอร์ตี้ `mode` ของออบเจ็คนั้นๆ ออกมาที่ console
 
 ### 5. What will the following code output to the console?
@@ -155,16 +156,82 @@ Angry Birds
 
 #### เหตุผล:
 
-ตัวแปร `games` ในที่นี้คือ constructor function (ถูก define ในรูปแบบนิพจน์ฟังก์ชั่น) ซึ่งภายใน constructor มีการกำหนดพร็อพเพอร์ตี้ `name` ให้มีค่าเริ่มต้นเป็นสตริงว่าง 
+ตัวแปร `games` ในที่นี้คือ constructor function (ถูก define ในรูปแบบ *นิพจน์ฟังก์ชั่น*) ซึ่งภายใน constructor
+มีการกำหนดพร็อพเพอร์ตี้ `name` ของ instance ให้มีค่าเริ่มต้นเป็นสตริงว่าง
 
-จากนั้นมีการ define ฟังก์ชั่น (เมธอด) `getName()` และ `setName()` เพิ่มเข้าไป
+จากนั้นมีการ define ฟังก์ชั่น (เมธอด) `getName()` และ `setName()` เพิ่มให้กับ `games`
 
-เมธอด `getName()` จะกำหนดพร็อพเพอร์ตี้ `name` เป็นค่า `'Age of Empire'` แล้ว return object instance นั้นๆ กลับออกไป
+เมธอด `getName()` จะกำหนดพร็อพเพอร์ตี้ `name` ของ instance เป็นค่า `'Age of Empire'` แล้ว return instance นั้นๆ
+กลับออกไป
 
-เมธอด `setName()` จะนำค่าของตัวแปร `n` ที่เราส่งผ่านเข้าไป ไปกำหนดให้พร็อพเพอร์ตี้ `name`
+เมธอด `setName()` จะนำค่าของตัวแปร `n` ที่เราส่งให้เมธอดนี้ ไปกำหนดให้พร็อพเพอร์ตี้ `name` ของ instance
 
 `var g = new games();` คือการสร้าง `games` object เก็บไว้ที่ตัวแปร `g`
 
-`g.getName().setName('Angry Birds');` คือการเรียกใช้ `getName()` เพื่อกำหนดพร็อพเพอร์ตี้ `name` ในออบเจ็ค `g` เป็นค่า `'Age of Empire'` แล้วเรียกใช้ `setName()` เพื่อเปลี่ยนพร็อพเพอร์ตี้ `name` เป็น `'Angry Birds'` ตามค่าที่ส่งให้กับ `setName()`
+`g.getName().setName('Angry Birds');` คือการเรียกใช้ `getName()` เพื่อกำหนดพร็อพเพอร์ตี้ `name` ในออบเจ็ค `g`
+เป็นค่า `'Age of Empire'` แล้วเรียกใช้ `setName()` เพื่อเปลี่ยนพร็อพเพอร์ตี้ `name` เป็น `'Angry Birds'`
+ตามค่าที่ส่งให้กับ `setName()`
 
-ดังนั้นเมื่อ log ค่า `g.name` จึงแสดงคำว่า Angry Birds ออกมาที่ console
+ดังนั้นเมื่อ log ค่า `g.name` จึงแสดงคำว่า **Angry Birds** ออกมาที่ console
+
+### 6. What will the following code output to the console?
+
+```javascript
+function ObjSort(arr) {
+  var len = arr.length;
+  for (var i = len - 1; i >= 0; i--) {
+    for (var j = 1; j <= i; j++) {
+      if (arr[j - 1] > arr[j]) {
+        var temp = arr[j - 1];
+        arr[j - 1] = arr[j];
+        arr[j] = temp;
+      }
+    }
+  }
+  return arr;
+}
+
+var arrayResult = ObjSort([7, 5, 2, 4, 3, 9]);
+var result = "";
+for (var i = 0; i < arrayResult.length; i++) {
+  result = result + arrayResult[i] + " ";
+}
+console.log(result);
+```
+
+#### ตอบ:
+
+ผลลัพธ์ที่ console คือ
+
+```
+2 3 4 5 7 9
+```
+
+#### เหตุผล:
+
+ฟังก์ชั่น `ObjSort()` จะรับ array เข้ามาทำการเรียงลำดับข้อมูลจากน้อยไปหามาก โดยใช้ bubble sort algorithm
+
+ในแต่ละรอบของ loop ชั้นนอก ค่ามากสุดจะถูก bubble ไปทางขวาของ array ยกตัวอย่างเช่น 
+
+- เมื่อจบ loop ชั้นนอกในรอบแรก ค่ามากสุด คือ 9 จะถูกย้ายไปยังตำแหน่งสุดท้าย (ขวาสุด) ของ array 
+- เมื่อจบ loop ชั้นนอกในรอบที่ 2 ค่ามากสุดรองลงมา คือ 7 จะถูกย้ายไปยังตำแหน่งรองสุดท้ายของ array
+- ฯลฯ
+
+`ObjSort()` จะ return array ที่เรียงลำดับข้อมูลแล้วออกไป (จริงๆก็คือ array reference เดิม เพราะ `ObjSort()` ทำการ mutate ข้อมูลใน array ที่รับเข้ามาโดยตรง) 
+
+ในที่นี้เก็บ array ที่เรียงลำดับแล้วไว้ในตัวแปร `arrayResult`
+
+โค้ดส่วนที่เหลือ เป็นการนำข้อมูล (ค่าจำนวนเต็ม) ใน `arrayResult` มาแปลงเป็นสตริง แล้วเชื่อมต่อกันเป็นสตริงค่าเดียว โดยแยกแต่ละค่าด้วยช่องว่าง แล้ว log ออกมาที่ console
+
+ที่จริงโค้ด 5 บรรทัดสุดท้ายที่ทำหน้าที่แสดงค่าของ `arrayResult` สามารถยุบให้เหลือบรรทัดเดียว โดยใช้ array's reduce method ดังนี้
+
+```javascript
+var result = arrayResult.reduce((acc, item) => acc + item + " ", "");
+```
+
+หรือใช้ backquote (`) ในการทำ string interpolation แทนการต่อสตริงด้วย + ก็จะได้โค้ดที่สวยและเข้าใจง่ายขึ้นอีก
+
+```javascript
+const space = ' ';
+var result = arrayResult.reduce((acc, item) => `${acc}${item}${space}`, "");
+```
