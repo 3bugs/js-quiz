@@ -1,4 +1,4 @@
-# JavaScript Quiz
+# JavaScript Quiz, solved & explained by Promlert Lovichit
 
 ### 1. What will the code below output to the console?
 
